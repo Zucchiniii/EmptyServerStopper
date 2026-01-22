@@ -1,20 +1,17 @@
 package com.example.examplemod;
 
-import org.slf4j.Logger;
-
 import com.mojang.logging.LogUtils;
-
 import net.minecraft.server.MinecraftServer;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.event.server.ServerStoppingEvent;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import org.slf4j.Logger;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -22,7 +19,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Empty Server Stopper - A NeoForge mod that automatically shuts down the server
+ * Empty Server Stopper - A Forge mod that automatically shuts down the server
  * after a configurable period of time when no players are online.
  */
 @Mod(EmptyServerStopper.MODID)
@@ -43,12 +40,12 @@ public class EmptyServerStopper {
     // Track the time when server became empty (in milliseconds)
     private long emptyStartTime = -1;
 
-    public EmptyServerStopper(IEventBus modEventBus, ModContainer modContainer) {
+    public EmptyServerStopper() {
         // Register ourselves for server and other game events
-        NeoForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(this);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         
         LOGGER.info("Empty Server Stopper initialized!");
     }
@@ -100,7 +97,8 @@ public class EmptyServerStopper {
     }
 
     @SubscribeEvent
-    public void onServerTick(ServerTickEvent.Post event) {
+    public void onServerTick(TickEvent.ServerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
         if (server == null || !server.isDedicatedServer()) return;
         
         // Only check periodically (every 20 ticks = 1 second) to avoid performance impact
