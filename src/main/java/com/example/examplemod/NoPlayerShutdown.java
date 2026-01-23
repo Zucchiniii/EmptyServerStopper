@@ -22,12 +22,12 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Empty Server Stopper - A NeoForge mod that automatically shuts down the server
+ * No Player Shutdown - A NeoForge mod that automatically shuts down the server
  * after a configurable period of time when no players are online.
  */
-@Mod(EmptyServerStopper.MODID)
-public class EmptyServerStopper {
-    public static final String MODID = "emptyserverstopper";
+@Mod(NoPlayerShutdown.MODID)
+public class NoPlayerShutdown {
+    public static final String MODID = "noplayershutdown";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     // Server instance reference
@@ -43,14 +43,14 @@ public class EmptyServerStopper {
     // Track the time when server became empty (in milliseconds)
     private long emptyStartTime = -1;
 
-    public EmptyServerStopper(IEventBus modEventBus, ModContainer modContainer) {
+    public NoPlayerShutdown(IEventBus modEventBus, ModContainer modContainer) {
         // Register ourselves for server and other game events
         NeoForge.EVENT_BUS.register(this);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
         
-        LOGGER.info("Empty Server Stopper initialized!");
+        LOGGER.info("No Player Shutdown initialized!");
     }
 
     @SubscribeEvent
@@ -60,7 +60,7 @@ public class EmptyServerStopper {
         shutdownScheduled = false;
         emptyStartTime = -1;
         
-        LOGGER.info("Empty Server Stopper is now monitoring player count.");
+        LOGGER.info("No Player Shutdown is now monitoring player count.");
         LOGGER.info("Server will shut down after {} minutes of being empty.", Config.SHUTDOWN_DELAY_MINUTES.get());
     }
 
@@ -72,7 +72,7 @@ public class EmptyServerStopper {
         }
         shutdownScheduled = false;
         emptyStartTime = -1;
-        LOGGER.info("Empty Server Stopper shutting down.");
+        LOGGER.info("No Player Shutdown shutting down.");
     }
 
     @SubscribeEvent

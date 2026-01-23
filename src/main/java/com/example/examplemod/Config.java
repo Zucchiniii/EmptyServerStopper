@@ -3,7 +3,7 @@ package com.example.examplemod;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 /**
- * Configuration for Empty Server Stopper mod.
+ * Configuration for No Player Shutdown mod.
  * Allows server administrators to customize the shutdown delay.
  */
 public class Config {

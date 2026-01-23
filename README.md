@@ -5,5 +5,5 @@
 <h1 style="text-align: left;">&nbsp;</h1>
 <h1 style="text-align: left;">How to use</h1>
 <p>Drop this mod in your mods folder <span style="text-decoration: underline;"><strong>Server Side</strong></span>.</p>
-<p>Configure shutdown delay in <strong>config -&gt; emptyserverstopper-server.toml</strong> or <strong>emptyserverstopper-common.toml</strong>.</p>
+<p>Configure shutdown delay in <strong>config -&gt; noplayershutdown-server.toml</strong> or <strong>noplayershutdown-common.toml</strong>.</p>
 <p>Default shutdown delay is 30 mins, which means the server will shut down after 30 mins when 0 players are online.</p>
