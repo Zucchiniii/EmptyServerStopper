@@ -1,0 +1,6 @@
+{
+  "noplayershutdown.configuration.title": "No Player Shutdown Config",
+  "noplayershutdown.configuration.section.noplayershutdown.server.toml": "Server Settings",
+  "noplayershutdown.configuration.section.noplayershutdown.server.toml.title": "No Player Shutdown Config",
+  "noplayershutdown.configuration.shutdownDelayMinutes": "Shutdown Delay (minutes)"
+}
