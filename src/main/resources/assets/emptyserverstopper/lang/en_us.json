@@ -1,6 +1,0 @@
-{
-  "emptyserverstopper.configuration.title": "Empty Server Stopper Config",
-  "emptyserverstopper.configuration.section.emptyserverstopper.server.toml": "Server Settings",
-  "emptyserverstopper.configuration.section.emptyserverstopper.server.toml.title": "Empty Server Stopper Config",
-  "emptyserverstopper.configuration.shutdownDelayMinutes": "Shutdown Delay (minutes)"
-}

@@ -46,7 +46,7 @@ authors="${mod_authors}"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Empty Server Stopper automatically shuts down your Minecraft server
+No Player Shutdown automatically shuts down your Minecraft server
 after a configurable period of time when no players are online.
 
 Default: Server shuts down after 30 minutes of being empty.
