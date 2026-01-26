@@ -106,6 +106,12 @@ public class NoPlayerShutdown {
         // Only check periodically (every 20 ticks = 1 second) to avoid performance impact
         if (server.getTickCount() % 20 != 0) return;
         
+        // Check if server is empty and schedule shutdown if not already scheduled
+        // This handles the case where the server starts with no players
+        if (!shutdownScheduled && server.getPlayerCount() == 0) {
+            scheduleShutdown();
+        }
+        
         // Log countdown warnings
         if (shutdownScheduled && emptyStartTime > 0) {
             long elapsedMinutes = (System.currentTimeMillis() - emptyStartTime) / 60000;
