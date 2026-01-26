@@ -48,7 +48,7 @@ public class NoPlayerShutdown {
         NeoForge.EVENT_BUS.register(this);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         
         LOGGER.info("No Player Shutdown initialized!");
     }
